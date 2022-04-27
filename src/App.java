@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class App extends JFrame implements MouseListener {
+public class App extends JFrame {
 
     Canvas canvas;
     JMenuBar menuBar;
@@ -62,7 +62,6 @@ public class App extends JFrame implements MouseListener {
         this.getContentPane().add(canvas);
         this.setJMenuBar(menuBar);
         this.setTitle("Dots App");
-        this.addMouseListener(this);
     }
 
     public static void main(String[] args) {
@@ -70,35 +69,5 @@ public class App extends JFrame implements MouseListener {
         win.setSize(500, 500);
         win.setVisible(true);
         win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        int actualX = e.getX() - 12;
-        int actualY = e.getY() - 56;
-        System.out.print(actualX + ", " + actualY + "\n");
-        Dot dot = new Dot(actualX, actualY);
-        canvas.addDot(dot);
-        canvas.repaint();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 }
