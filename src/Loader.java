@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Loader {
     public static ArrayList<Dot> load() {
         ArrayList<Dot> dotsList = new ArrayList<>();
-        // allow the user to enter the location and file name
+        // allow the user select the file they would like to load
         JFileChooser fc = new JFileChooser();
         int i = fc.showOpenDialog(null);
         String filePath = "";
@@ -24,9 +24,6 @@ public class Loader {
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        for (Dot each: dotsList){
-            System.out.println("x: " + each.getX() + " y: " + each.getY());
         }
         return dotsList;
     }

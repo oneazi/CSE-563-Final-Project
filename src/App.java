@@ -29,7 +29,8 @@ public class App extends JFrame implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("load");
-                Loader.load();
+                canvas.setDotsList(Loader.load());
+                canvas.repaint();
             }
         });
         random.addActionListener(new ActionListener() {
