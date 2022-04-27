@@ -71,8 +71,10 @@ public class App extends JFrame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.print(e.getX() + ", " + e.getY() + "\n");
-        Dot dot = new Dot(e.getX(), e.getY());
+        int actualX = e.getX() - 12;
+        int actualY = e.getY() - 56;
+        System.out.print(actualX + ", " + actualY + "\n");
+        Dot dot = new Dot(actualX, actualY);
         canvas.addDot(dot);
         canvas.repaint();
     }

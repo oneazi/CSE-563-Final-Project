@@ -14,7 +14,7 @@ public class Dot implements Drawable{
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.RED);
-        g.fillOval(x, y, 10, 10);
+        g.fillOval(x, y, 5, 5);
     }
 
     public boolean isVisited() {
