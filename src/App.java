@@ -71,7 +71,7 @@ public class App extends JFrame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getLocationOnScreen());
+        System.out.print(e.getX() + ", " + e.getY() + "\n");
     }
 
     @Override
