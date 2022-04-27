@@ -22,6 +22,7 @@ public class App extends JFrame implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("save");
+                Saver.save(canvas.getDotsList());
             }
         });
         load.addActionListener(new ActionListener() {

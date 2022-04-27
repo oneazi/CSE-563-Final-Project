@@ -23,4 +23,12 @@ public class Canvas extends JPanel {
         System.out.println("dot added");
         dotsList.add(dot);
     }
+
+    public ArrayList<Dot> getDotsList() {
+        return this.dotsList;
+    }
+
+    public void setDotsList(ArrayList<Dot> dotsList) {
+        this.dotsList = dotsList;
+    }
 }
