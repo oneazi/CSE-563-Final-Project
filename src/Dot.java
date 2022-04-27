@@ -25,4 +25,12 @@ public class Dot implements Drawable, Serializable {
     public void visit() {
         visited = true;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
