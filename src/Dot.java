@@ -15,7 +15,7 @@ public class Dot implements Drawable, Serializable {
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.RED);
-        g.fillOval(x, y, 5, 5);
+        g.fillOval(x, y, 7, 7);
     }
 
     public boolean isVisited() {
