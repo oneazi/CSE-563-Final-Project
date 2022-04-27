@@ -6,7 +6,6 @@ public class Dot implements Drawable, Serializable {
     private boolean visited;
 
     public Dot(int x, int y) {
-        System.out.println("dot created");
         this.x = x;
         this.y = y;
         visited = false;

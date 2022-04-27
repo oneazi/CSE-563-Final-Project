@@ -15,7 +15,6 @@ public class Canvas extends JPanel implements MouseListener {
     }
 
     public void paintComponent(Graphics g) {
-        System.out.println("in paintComponent");
         super.paintComponent(g);
         for(Dot dot : dotsList) {
             dot.draw(g);
@@ -23,7 +22,6 @@ public class Canvas extends JPanel implements MouseListener {
     }
 
     public void addDot(Dot dot) {
-        System.out.println("dot added");
         dotsList.add(dot);
     }
 
