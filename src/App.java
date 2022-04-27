@@ -3,13 +3,13 @@ import java.awt.event.*;
 
 public class App extends JFrame implements MouseListener {
 
-    JPanel canvas;
+    Canvas canvas;
     JMenuBar menuBar;
     JMenu menu;
     JMenuItem save, load, random, clear, run;
 
     public App() {
-        canvas = new JPanel();
+        canvas = new Canvas();
         menuBar = new JMenuBar();
         menu = new JMenu("Actions");
         save = new JMenuItem("Save");
@@ -72,6 +72,9 @@ public class App extends JFrame implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.print(e.getX() + ", " + e.getY() + "\n");
+        Dot dot = new Dot(e.getX(), e.getY());
+        canvas.addDot(dot);
+        canvas.repaint();
     }
 
     @Override
