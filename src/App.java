@@ -12,7 +12,7 @@ public class App extends JFrame implements MouseListener {
         canvas = new JPanel();
         menuBar = new JMenuBar();
         menu = new JMenu("Actions");
-        save = new JMenuItem("Save", KeyEvent.VK_T);
+        save = new JMenuItem("Save");
         load = new JMenuItem("Load");
         random = new JMenuItem("Random");
         clear = new JMenuItem("Clear");
