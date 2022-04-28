@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class App extends JFrame {
 
@@ -37,12 +38,16 @@ public class App extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("random");
+                canvas.setDotsList(Randomizer.randomize());
+                canvas.repaint();
             }
         });
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("clear");
+                canvas.setDotsList(new ArrayList<>());
+                canvas.repaint();
             }
         });
         run.addActionListener(new ActionListener() {
