@@ -48,8 +48,8 @@ public class App extends JFrame {
         run.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DbScan.scan(canvas.getDotsList(), 50);
-                System.out.println("run");
+                canvas.setConnections(DbScan.scan(canvas.getDotsList(), 50));
+                canvas.repaint();
             }
         });
 
