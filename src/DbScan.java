@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class DbScan {
-    public static void scan(ArrayList<Dot> dots, int epsilon) {
+    public static ArrayList<ArrayList<Integer>> scan(ArrayList<Dot> dots, int epsilon) {
         Random rng = new Random();
         ArrayList<ArrayList<Integer>> connections = new ArrayList<ArrayList<Integer>>();
 
@@ -50,7 +50,7 @@ public class DbScan {
             System.out.print("\n");
         }
 
-        // return connections;
+        return connections;
     }
 
     /**
