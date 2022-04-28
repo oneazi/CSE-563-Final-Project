@@ -11,7 +11,6 @@ public class Randomizer {
             Random rand = new Random();
             randX = rand.nextInt(500);
             randY = rand.nextInt(500);
-            System.out.println(randX + ", " + randY);
             dotList.add(new Dot(randX, randY));
         }
         return dotList;

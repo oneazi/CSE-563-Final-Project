@@ -55,8 +55,10 @@ public class App extends JFrame {
         run.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                canvas.setConnections(DbScan.scan(canvas.getDotsList(), 50));
-                canvas.repaint();
+                if (DbScan.setEpsilon()) {
+                    canvas.setConnections(DbScan.scan(canvas.getDotsList()));
+                    canvas.repaint();
+                }
             }
         });
 

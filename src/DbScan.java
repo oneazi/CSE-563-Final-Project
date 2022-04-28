@@ -1,9 +1,35 @@
+import javax.swing.*;
+import java.awt.*;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class DbScan {
-    public static ArrayList<ArrayList<Integer>> scan(ArrayList<Dot> dots, int epsilon) {
+    private static int epsilon = 0;
+
+    public static boolean setEpsilon() {
+        boolean isSet = false;
+        String distance = JOptionPane.showInputDialog(null,
+                "Enter an integer distance");
+        if (distance != null) {
+            try {
+                epsilon = Integer.parseInt(distance);
+                isSet = true;
+            } catch (NumberFormatException ex) {
+                JDialog d = new JDialog((Dialog) null, "Error");
+                JLabel title = new JLabel("Please only enter integer values for distance");
+                title.setHorizontalAlignment(JLabel.CENTER);
+                d.setLayout(new BorderLayout());
+                d.add(title, BorderLayout.CENTER);
+                d.setSize(new Dimension(400, 200));
+                d.setVisible(true);
+                d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            }
+        }
+        return isSet;
+    }
+
+    public static ArrayList<ArrayList<Integer>> scan(ArrayList<Dot> dots) {
         Random rng = new Random();
         ArrayList<ArrayList<Integer>> connections = new ArrayList<ArrayList<Integer>>();
 
