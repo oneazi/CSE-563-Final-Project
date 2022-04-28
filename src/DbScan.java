@@ -8,6 +8,8 @@ public class DbScan {
         ArrayList<ArrayList<Integer>> connections = new ArrayList<ArrayList<Integer>>();
 
         ArrayList<Integer> unvisited = new ArrayList<Integer>();
+        ArrayList<Integer> neighbors = new ArrayList<Integer>();
+
         for(int i = 0; i < dots.size(); ++i) {
             connections.add(new ArrayList<Integer>());
             unvisited.add(i);
@@ -32,25 +34,49 @@ public class DbScan {
             // find list of neighbors
             for(int i = 0; i < unvisited.size(); ++i) {
                 if(DbScan.dist(selected, dots.get(unvisited.get(i))) < epsilon) {
+                    neighbors.add(unvisited.get(i));
+
                     if(!dots.get(unvisited.get(i)).isConnected()) {
                         dots.get(unvisited.get(i)).connect();
                         connections.get(selection).add(unvisited.get(i));
                     }
                 }
             }
-        }
 
-        System.out.println("scanned...");
-        for(int i = 0; i < connections.size(); ++i) {
-            System.out.print(i + ":");
-            for(int j = 0; j < connections.get(i).size(); ++j) {
-                System.out.print(" " + connections.get(i).get(j));
-            }
-
-            System.out.print("\n");
+            DbScan.cluster(dots, unvisited, connections, neighbors, epsilon, rng);
         }
 
         return connections;
+    }
+
+    private static void cluster(ArrayList<Dot> dots, ArrayList<Integer> unvisited,
+                                ArrayList<ArrayList<Integer>> connections,
+                                ArrayList<Integer> neighbors, int epsilon, Random rng) {
+        if(neighbors.size() == 0) {
+            return;
+        }
+
+        int index = rng.nextInt(neighbors.size());
+        int selection = neighbors.get(index);
+
+        Dot selected = dots.get(selection);
+        selected.visit();
+
+        neighbors.remove(index);
+        unvisited.remove(Integer.valueOf(selection));
+
+        for(int i = 0; i < unvisited.size(); ++i) {
+            if(DbScan.dist(selected, dots.get(unvisited.get(i))) < epsilon) {
+                neighbors.add(unvisited.get(i));
+
+                if(!dots.get(unvisited.get(i)).isConnected()) {
+                    dots.get(unvisited.get(i)).connect();
+                    connections.get(selection).add(unvisited.get(i));
+                }
+            }
+        }
+
+        cluster(dots, unvisited, connections, neighbors, epsilon, rng);
     }
 
     /**
