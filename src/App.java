@@ -38,6 +38,7 @@ public class App extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("random");
+                canvas.setConnections(new ArrayList<>());
                 canvas.setDotsList(Randomizer.randomize());
                 canvas.repaint();
             }
@@ -47,6 +48,7 @@ public class App extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("clear");
                 canvas.setDotsList(new ArrayList<>());
+                canvas.setConnections(new ArrayList<>());
                 canvas.repaint();
             }
         });
