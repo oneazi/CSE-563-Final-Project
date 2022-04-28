@@ -88,7 +88,7 @@ public class DbScan {
         Dot selected = dots.get(selection);
         selected.visit();
 
-        neighbors.remove(index);
+        neighbors.clear();
         unvisited.remove(Integer.valueOf(selection));
 
         for(int i = 0; i < unvisited.size(); ++i) {
