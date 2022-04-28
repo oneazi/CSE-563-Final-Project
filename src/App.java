@@ -22,14 +22,14 @@ public class App extends JFrame {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("save");
+                //System.out.println("save");
                 Saver.save(canvas.getDotsList());
             }
         });
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("load");
+                //System.out.println("load");
                 canvas.setDotsList(Loader.load());
                 canvas.repaint();
             }
@@ -37,16 +37,17 @@ public class App extends JFrame {
         random.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("random");
+                //System.out.println("random");
                 canvas.setConnections(new ArrayList<>());
-                canvas.setDotsList(Randomizer.randomize());
+                canvas.setDotsList(Randomizer.randomize(canvas.getWidth(), canvas.getHeight()));
                 canvas.repaint();
+                
             }
         });
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("clear");
+                //System.out.println("clear");
                 canvas.setDotsList(new ArrayList<>());
                 canvas.setConnections(new ArrayList<>());
                 canvas.repaint();
