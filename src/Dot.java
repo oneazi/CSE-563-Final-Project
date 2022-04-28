@@ -4,11 +4,13 @@ import java.io.Serializable;
 public class Dot implements Drawable, Serializable {
     private int x, y;
     private boolean visited;
+    private boolean connected;
 
     public Dot(int x, int y) {
         this.x = x;
         this.y = y;
         visited = false;
+        connected = false;
     }
 
     @Override
@@ -21,8 +23,16 @@ public class Dot implements Drawable, Serializable {
         return visited;
     }
 
+    public boolean isConnected() {
+        return connected;
+    }
+
     public void visit() {
         visited = true;
+    }
+
+    public void connect() {
+        connected = true;
     }
 
     public int getX() {
@@ -31,5 +41,13 @@ public class Dot implements Drawable, Serializable {
 
     public int getY() {
         return y;
+    }
+
+    public void setVisit(boolean visited) {
+        this.visited = visited;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
     }
 }

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class Canvas extends JPanel implements MouseListener {
 
     private ArrayList<Dot> dotsList;
+    private ArrayList<ArrayList<Integer>> connections;
+
     public Canvas() {
         dotsList = new ArrayList<>();
         this.addMouseListener(this);
@@ -16,8 +18,26 @@ public class Canvas extends JPanel implements MouseListener {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        g.setColor(Color.RED);
         for(Dot dot : dotsList) {
             dot.draw(g);
+        }
+
+        g.setColor(Color.BLACK);
+        if(connections != null) {
+            for(int i = 0; i < connections.size(); ++i) {
+                Dot source = dotsList.get(i);
+
+                for(int j = 0; j < connections.get(i).size(); ++j) {
+                    Dot target = dotsList.get(connections.get(i).get(j));
+
+                    g.drawLine(source.getX(),
+                               source.getY(),
+                               target.getX(),
+                               target.getY());
+                }
+            }
         }
     }
 
@@ -31,6 +51,11 @@ public class Canvas extends JPanel implements MouseListener {
 
     public void setDotsList(ArrayList<Dot> dotsList) {
         this.dotsList = dotsList;
+    }
+
+
+    public void setConnections(ArrayList<ArrayList<Integer>> connections) {
+        this.connections = connections;
     }
 
     @Override
