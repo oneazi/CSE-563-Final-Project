@@ -7,6 +7,11 @@ import java.util.Random;
 public class DbScan {
     private static int epsilon = 0;
 
+    /**
+     * Prompt for the maximum distance to cluster Dot's by.
+     *
+     * @return Success or failure
+     */
     public static boolean setEpsilon() {
         boolean isSet = false;
         String distance = JOptionPane.showInputDialog(null,
@@ -26,9 +31,16 @@ public class DbScan {
                 d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             }
         }
+
         return isSet;
     }
 
+    /**
+     * Perform a DBSCAN on a list of Dots.
+     *
+     * @param dots The list of Dot's
+     * @return The resulting list of connections for each dot (i.e., an adjacency matrix)
+     */
     public static ArrayList<ArrayList<Integer>> scan(ArrayList<Dot> dots) {
         Random rng = new Random();
         ArrayList<ArrayList<Integer>> connections = new ArrayList<ArrayList<Integer>>();
@@ -75,6 +87,16 @@ public class DbScan {
         return connections;
     }
 
+    /**
+     * From a given point, cluster its neighbors' neighbors, recursively.
+     *
+     * @param dots The list of Dot's
+     * @param unvisited The list of unvisited dots
+     * @param connections The list of formed connections between Dot's
+     * @param neighbors The list of neighbors for a single Dot
+     * @param epsilon The maximum distance
+     * @param rng The random number generator engine
+     */
     private static void cluster(ArrayList<Dot> dots, ArrayList<Integer> unvisited,
                                 ArrayList<ArrayList<Integer>> connections,
                                 ArrayList<Integer> neighbors, int epsilon, Random rng) {
