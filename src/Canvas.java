@@ -32,10 +32,10 @@ public class Canvas extends JPanel implements MouseListener {
                 for(int j = 0; j < connections.get(i).size(); ++j) {
                     Dot target = dotsList.get(connections.get(i).get(j));
 
-                    g.drawLine(source.getX(),
-                               source.getY(),
-                               target.getX(),
-                               target.getY());
+                    g.drawLine(source.getX() + 4,
+                               source.getY() + 4,
+                               target.getX() + 4,
+                               target.getY() + 4);
                 }
             }
         }
@@ -53,6 +53,21 @@ public class Canvas extends JPanel implements MouseListener {
         this.dotsList = dotsList;
     }
 
+    public void initConnections(int capacity) {
+        this.connections = new ArrayList<ArrayList<Integer>>();
+
+        for(int i = 0; i < capacity; ++i) {
+            this.connections.add(new ArrayList<Integer>());
+        }
+    }
+
+    public ArrayList<ArrayList<Integer>> getConnections() {
+        return this.connections;
+    }
+
+    public void addConnection(int source, int target) {
+        this.connections.get(source).add(target);
+    }
 
     public void setConnections(ArrayList<ArrayList<Integer>> connections) {
         this.connections = connections;
@@ -60,10 +75,8 @@ public class Canvas extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int actualX = e.getX();
-        int actualY = e.getY();
-        System.out.print(actualX + ", " + actualY + "\n");
-        Dot dot = new Dot(actualX, actualY);
+        Dot dot = new Dot(e.getX() - 4, e.getY() - 4);
+
         this.addDot(dot);
         this.repaint();
     }

@@ -9,6 +9,9 @@ public class App extends JFrame {
     JMenu menu;
     JMenuItem save, load, random, clear, run;
 
+    static int sourceIndex, targetIndex;
+    static boolean drawing;
+
     public App() {
         canvas = new Canvas();
         menuBar = new JMenuBar();
@@ -22,14 +25,15 @@ public class App extends JFrame {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("save");
+                drawing = false;
                 Saver.save(canvas.getDotsList());
             }
         });
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("load");
+                drawing = false;
+
                 canvas.setDotsList(Loader.load());
                 canvas.repaint();
             }
@@ -37,28 +41,55 @@ public class App extends JFrame {
         random.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("random");
+                drawing = false;
+
                 canvas.setConnections(new ArrayList<>());
                 canvas.setDotsList(Randomizer.randomize(canvas.getWidth(), canvas.getHeight()));
                 canvas.repaint();
-                
             }
         });
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("clear");
+                drawing = false;
+
                 canvas.setDotsList(new ArrayList<>());
                 canvas.setConnections(new ArrayList<>());
                 canvas.repaint();
             }
         });
+
         run.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                drawing = false;
+
                 if (DbScan.setEpsilon()) {
-                    canvas.setConnections(DbScan.scan(canvas.getDotsList()));
-                    canvas.repaint();
+                    ArrayList<ArrayList<Integer>> connections;
+                    connections = DbScan.scan(canvas.getDotsList());
+
+                    if(connections.size() > 0) {
+                        drawing = true;
+                        canvas.initConnections(connections.size());
+
+                        (new Thread(() -> {
+                                try {
+                                    for(sourceIndex = 0; drawing && sourceIndex < connections.size(); ++sourceIndex) {
+                                        for(targetIndex = 0; drawing && targetIndex < connections.get(sourceIndex).size(); ++targetIndex) {
+                                            SwingUtilities.invokeAndWait(() -> {
+                                                    canvas.addConnection
+                                                        (sourceIndex, connections.get(sourceIndex).get(targetIndex));
+                                                    canvas.repaint();
+                                                });
+
+                                            Thread.sleep(250);
+                                        }
+                                    }
+                                } catch(Exception exception) {
+                                    System.out.println("unable to interrupt first invoke...");
+                                }
+                        })).start();
+                    }
                 }
             }
         });
