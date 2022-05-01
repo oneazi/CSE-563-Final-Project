@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * This class provides the base GUI for the entire dots drawing application
+ */
 public class App extends JFrame {
 
     Canvas canvas;
@@ -12,6 +15,10 @@ public class App extends JFrame {
     static int sourceIndex, targetIndex;
     static boolean drawing;
 
+    /**
+     * This is the constructor for the App class which initializes the entire GUI and adds
+     * action listeners to the buttons to enable interaction with the GUI
+     */
     public App() {
         canvas = new Canvas();
         menuBar = new JMenuBar();
@@ -106,6 +113,10 @@ public class App extends JFrame {
         this.setTitle("Dots App");
     }
 
+    /**
+     * the main point of entry for the program
+     * @param args an array of strings provided as parameters to the program
+     */
     public static void main(String[] args) {
         App win = new App();
         win.setSize(500, 500);

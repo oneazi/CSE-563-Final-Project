@@ -6,6 +6,12 @@ public class Dot implements Drawable, Serializable {
     private boolean visited;
     private boolean connected;
 
+    /**
+     * Initializes a Dot object which holds the x,y coordinates of the dot on the canvas and whether
+     * it has been visited and added to a tree in DBSCAN
+     * @param x x coordinate on the canvas
+     * @param y y coordinate on the canvas
+     */
     public Dot(int x, int y) {
         this.x = x;
         this.y = y;
@@ -13,6 +19,10 @@ public class Dot implements Drawable, Serializable {
         connected = false;
     }
 
+    /**
+     * Allows the dots to be drawn on the screen
+     * @param g
+     */
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.RED);

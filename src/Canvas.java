@@ -11,11 +11,18 @@ public class Canvas extends JPanel implements MouseListener {
     private ArrayList<Dot> dotsList;
     private ArrayList<ArrayList<Integer>> connections;
 
+    /**
+     * Constructor to initialize the Canvas where everything will be drawn
+     */
     public Canvas() {
         dotsList = new ArrayList<>();
         this.addMouseListener(this);
     }
 
+    /**
+     * Paints the screen with the newly desired elements like dots and lines
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -41,6 +48,10 @@ public class Canvas extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Adds a Dot to the list of dots currently available
+     * @param dot a dot containing x,y coordinates on the screen
+     */
     public void addDot(Dot dot) {
         dotsList.add(dot);
     }
@@ -65,6 +76,11 @@ public class Canvas extends JPanel implements MouseListener {
         return this.connections;
     }
 
+    /**
+     * adds a new connection to the list
+     * @param source starting point of line
+     * @param target ending point of a line
+     */
     public void addConnection(int source, int target) {
         this.connections.get(source).add(target);
     }
@@ -73,6 +89,11 @@ public class Canvas extends JPanel implements MouseListener {
         this.connections = connections;
     }
 
+    /**
+     * Gets the x,y coordinates of where the user clicked their mouse and adds a Dot to the
+     * screen in the selected location
+     * @param e event created from mouse click
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         Dot dot = new Dot(e.getX() - 4, e.getY() - 4);
