@@ -89,7 +89,7 @@ public class App extends JFrame {
                                                     canvas.repaint();
                                                 });
 
-                                            Thread.sleep(250);
+                                            Thread.sleep(100);
                                         }
                                     }
                                 } catch(Exception exception) {
