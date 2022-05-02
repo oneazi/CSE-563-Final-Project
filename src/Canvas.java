@@ -40,9 +40,9 @@ public class Canvas extends JPanel implements MouseListener {
                     Dot target = dotsList.get(connections.get(i).get(j));
 
                     g.drawLine(source.getX() + 4,
-                               source.getY() + 4,
-                               target.getX() + 4,
-                               target.getY() + 4);
+                            source.getY() + 4,
+                            target.getX() + 4,
+                            target.getY() + 4);
                 }
             }
         }
